@@ -19,7 +19,7 @@ for(int i = 0; i < numRounds; i++)
 }
 
 // find the winner!
-Participant winner = contest.FindWinner();
+Participant winner = contest.FindWinner(PickPlayerWithHighestTotalScore);
 
 // print outcome
 Console.WriteLine("Participants:");
@@ -30,4 +30,19 @@ Console.WriteLine();
 Console.WriteLine("Winner:");
 Console.WriteLine("-------");
 Console.WriteLine(winner);
+
+
+// methods
+
+Participant PickPlayerWithHighestTotalScore(Participant p1, Participant p2)
+{
+    if(p1.TotalScore > p2.TotalScore)
+    {
+        return p1;
+    }
+    else
+    {
+        return p2;
+    }
+}
 

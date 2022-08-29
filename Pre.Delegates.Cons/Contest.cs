@@ -8,6 +8,8 @@ namespace Pre.Delegates.Cons
 {
     public class Contest
     {
+        public delegate Participant WinningRule(Participant p1, Participant p2);
+
         private const int MaxScorePerRound = 5;
         private static readonly Random random = new Random();
 
@@ -27,16 +29,13 @@ namespace Pre.Delegates.Cons
             }
         }
 
-        public Participant FindWinner()
+        public Participant FindWinner(WinningRule winningRule)
         {
             Participant winner = Participants[0];
             for(int i = 1; i < Participants.Count; i++)
             {
                 Participant participant = Participants[i];
-                if(participant.TotalScore > winner.TotalScore)
-                {
-                    winner = participant;
-                }
+                winner = winningRule.Invoke(winner, participant);
             }
             return winner;
         }
