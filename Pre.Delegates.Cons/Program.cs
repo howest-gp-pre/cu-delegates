@@ -6,7 +6,7 @@ Participant bob = new Participant("Bob");
 Participant carol = new Participant("Carol");
 
 // register participants to contest
-Contest contest = new Contest(PickPlayerWithHighestTotalThenMaxScore);
+Contest contest = new Contest((p1, p2) => p1.TotalScore > p2.TotalScore ? p1 : p2);
 contest.AddParticipant(alice);
 contest.AddParticipant(bob);
 contest.AddParticipant(carol);
