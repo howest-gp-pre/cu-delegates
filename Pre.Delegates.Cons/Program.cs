@@ -6,7 +6,7 @@ Participant bob = new Participant("Bob");
 Participant carol = new Participant("Carol");
 
 // register participants to contest
-Contest contest = new Contest();
+Contest contest = new Contest(PickPlayerWithHighestTotalThenMaxScore);
 contest.AddParticipant(alice);
 contest.AddParticipant(bob);
 contest.AddParticipant(carol);
@@ -19,7 +19,7 @@ for(int i = 0; i < numRounds; i++)
 }
 
 // find the winner!
-Participant winner = contest.FindWinner(PickPlayerWithHighestTotalThenMaxScore);
+Participant winner = contest.FindWinner();
 
 // print outcome
 Console.WriteLine("Participants:");

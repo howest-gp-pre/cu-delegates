@@ -13,7 +13,14 @@ namespace Pre.Delegates.Cons
         private const int MaxScorePerRound = 5;
         private static readonly Random random = new Random();
 
+        private WinningRule winningRule;
+
         public List<Participant> Participants { get; } = new List<Participant>();
+
+        public Contest(WinningRule winningRule)
+        {
+            this.winningRule = winningRule;
+        }
 
         public void AddParticipant(Participant participant)
         {
@@ -29,7 +36,7 @@ namespace Pre.Delegates.Cons
             }
         }
 
-        public Participant FindWinner(WinningRule winningRule)
+        public Participant FindWinner()
         {
             Participant winner = Participants[0];
             for(int i = 1; i < Participants.Count; i++)
