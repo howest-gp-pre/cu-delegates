@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Pre.Delegates.Cons
 {
+    public delegate Participant WinningRule(Participant p1, Participant p2);
+
     public class Contest
     {
-        public delegate Participant WinningRule(Participant p1, Participant p2);
-
         private const int MaxScorePerRound = 5;
         private static readonly Random random = new Random();
 
@@ -29,7 +29,7 @@ namespace Pre.Delegates.Cons
 
         public void PlayRound()
         {
-            foreach(Participant participant in Participants)
+            foreach (Participant participant in Participants)
             {
                 int randomScore = random.Next(MaxScorePerRound + 1);
                 participant.RegisterScore(randomScore);
@@ -39,11 +39,12 @@ namespace Pre.Delegates.Cons
         public Participant FindWinner()
         {
             Participant winner = Participants[0];
-            for(int i = 1; i < Participants.Count; i++)
+            for (int i = 1; i < Participants.Count; i++)
             {
                 Participant participant = Participants[i];
                 winner = winningRule.Invoke(winner, participant);
             }
+
             return winner;
         }
     }
